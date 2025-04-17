@@ -20,12 +20,6 @@ public class ReviewService {
     @Autowired
     private ReviewRepo reviewRepo;
 
-    @Autowired
-    private RoomsService roomsService;
-
-    @Autowired
-    private UserService userService;
-
     private boolean allowedToReview(Integer roomId, Integer userId) {
         List<BookingsModel> bookings = repo.myBookings(userId);
         for (BookingsModel books : bookings) {
