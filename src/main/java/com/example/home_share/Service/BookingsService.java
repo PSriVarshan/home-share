@@ -1,6 +1,7 @@
 package com.example.home_share.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,15 +29,9 @@ public class BookingsService {
         return bookRepo.save(book);
     }
 
-    public void cancelMyRoom(BookingsModel book) {
-        bookRepo.delete(book);
-    }
-
-    public List<BookingsModel> listAllBookings(String pass) {
-        String og = "123456789";
-        if (pass.equals(og))
-            return bookRepo.findAll();
-        System.out.println("You ain't Admin Bro !!");
-        return null;
+    @Transactional
+    public Optional<BookingsModel> cancelMyRoom(Integer id) {
+        bookRepo.cancel(id);
+        return bookRepo.findById(id);
     }
 }

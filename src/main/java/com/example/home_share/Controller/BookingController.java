@@ -6,6 +6,7 @@ import com.example.home_share.Service.BookingsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/bookings")
@@ -31,17 +32,8 @@ public class BookingController {
         return result;
     }
 
-    @DeleteMapping("/cancel")
-    public void cancelBooking(@RequestBody BookingsModel booking) {
-        bookingsService.cancelMyRoom(booking);
-    }
-
-    @GetMapping("/admin/all")
-    public List<BookingsModel> getAllBookings(@RequestParam String pass) {
-        List<BookingsModel> bookings = bookingsService.listAllBookings(pass);
-        if (bookings == null) {
-            throw new SecurityException("Unauthorized access. Invalid admin password.");
-        }
-        return bookings;
+    @PutMapping("/cancel/{id}")
+    public Optional<BookingsModel> cancelBooking(@PathVariable Integer id) {
+        return bookingsService.cancelMyRoom(id);
     }
 }
