@@ -1,6 +1,7 @@
 package com.example.home_share.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,9 @@ public class BookingsService {
         return bookRepo.save(book);
     }
 
-    public BookingsModel cancelMyRoom(BookingsModel book) {
-        Integer id = book.getBookingId();
+    @Transactional
+    public Optional<BookingsModel> cancelMyRoom(Integer id) {
         bookRepo.cancel(id);
-        return book;
+        return bookRepo.findById(id);
     }
 }

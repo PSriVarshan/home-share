@@ -6,6 +6,7 @@ import com.example.home_share.Service.BookingsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/bookings")
@@ -31,8 +32,8 @@ public class BookingController {
         return result;
     }
 
-    @PutMapping("/cancel")
-    public BookingsModel cancelBooking(@RequestBody BookingsModel booking) {
-        return bookingsService.cancelMyRoom(booking);
+    @PutMapping("/cancel/{id}")
+    public Optional<BookingsModel> cancelBooking(@PathVariable Integer id) {
+        return bookingsService.cancelMyRoom(id);
     }
 }
