@@ -33,12 +33,8 @@ public class ReviewService {
     public String addReview(ReviewsModel review) {
         UserModel user = review.getReviewerId();
         Integer userId = user.getUserId();
-
         RoomsModel room = review.getRoomId();
-
         Integer roomId = room.getRoomId();
-
-        System.out.println("yuio");
         if (userId == null || roomId == null)
             return "Missing userId or roomId";
         if (allowedToReview(roomId, userId)) {
