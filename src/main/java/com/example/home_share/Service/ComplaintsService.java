@@ -34,6 +34,6 @@ public class ComplaintsService {
             compRepo.save(complain);
             return "Complaint mentioned ! We will contact you soon";
         }
-        return "Shut up Bitch!";
+        return "";
     }
 }

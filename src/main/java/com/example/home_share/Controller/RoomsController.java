@@ -32,7 +32,7 @@ public class RoomsController {
     }
 
     @GetMapping("/roomDetails")
-    public RoomsDTO getMethodName(@RequestParam Integer id) {
+    public RoomsDTO roomDetailRoomsDTO(@RequestParam Integer id) {
         return roomsService.getFullRoomDetails(id);
     }
 

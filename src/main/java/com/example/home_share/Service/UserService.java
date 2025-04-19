@@ -15,11 +15,11 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    public UserModel findUserbyId(Integer userId) {
+    public UserModel findUserbyId(Integer userId) { /* Admin feature */
         return userRepo.findById(userId).orElse(null);
     }
 
-    public boolean existingUser(Integer userId) {
+    public boolean existingUser(Integer userId) { /* Admin feature */
         if (findUserbyId(userId) != null) {
             return true;
         }

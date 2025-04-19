@@ -8,15 +8,11 @@ import org.springframework.stereotype.Service;
 import com.example.home_share.Data.RoomsDTO;
 import com.example.home_share.Model.ReviewsModel;
 import com.example.home_share.Model.RoomsModel;
-import com.example.home_share.Model.Custom.RoomFeatures;
 import com.example.home_share.Repo.ReviewRepo;
-import com.example.home_share.Repo.RoomFeaturesRepo;
 import com.example.home_share.Repo.RoomsRepo;
 
 @Service
 public class RoomsService {
-    @Autowired
-    private RoomFeaturesRepo roomFeaturesRepo;
     @Autowired
     private RoomsRepo roomRepo;
 
@@ -41,10 +37,9 @@ public class RoomsService {
 
     public RoomsDTO getFullRoomDetails(Integer roomId) {
         RoomsModel room = roomRepo.findById(roomId).orElseThrow();
-        RoomFeatures features = roomFeaturesRepo.findById(roomId).orElse(null); // create this method
         List<ReviewsModel> reviews = reviewsRepo.findAllByRoomId(room); // create this too
 
-        return new RoomsDTO(room, features, reviews);
+        return new RoomsDTO(room, reviews);
     }
 
 }

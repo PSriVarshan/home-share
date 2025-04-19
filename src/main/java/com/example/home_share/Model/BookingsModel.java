@@ -36,4 +36,21 @@ public class BookingsModel {
 
     @Column(name = "end_date")
     private Date to;
+
+    /*
+     * @Scheduled(cron = "0 0 0 * * ?") // Runs daily at midnight
+     * public void updateBookingStatuses() {
+     * List<BookingsModel> bookings = bookRepo.findAll();
+     * LocalDateTime now = LocalDateTime.now();
+     * 
+     * for (BookingsModel booking : bookings) {
+     * if (booking.getTo().toInstant().isBefore(now.atZone(ZoneId.systemDefault()).
+     * toInstant())
+     * && booking.getStatus() == BookingStatus.BOOKED) {
+     * booking.setStatus(BookingStatus.COMPLETED);
+     * bookRepo.save(booking);
+     * }
+     * }
+     * }
+     */
 }

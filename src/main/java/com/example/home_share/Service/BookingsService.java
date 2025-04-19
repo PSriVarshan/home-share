@@ -28,15 +28,9 @@ public class BookingsService {
         return bookRepo.save(book);
     }
 
-    public void cancelMyRoom(BookingsModel book) {
-        bookRepo.delete(book);
-    }
-
-    public List<BookingsModel> listAllBookings(String pass) {
-        String og = "123456789";
-        if (pass.equals(og))
-            return bookRepo.findAll();
-        System.out.println("You ain't Admin Bro !!");
-        return null;
+    public BookingsModel cancelMyRoom(BookingsModel book) {
+        Integer id = book.getBookingId();
+        bookRepo.cancel(id);
+        return book;
     }
 }
